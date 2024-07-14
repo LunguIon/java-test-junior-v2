@@ -7,7 +7,9 @@ package com.java.test.junior.controller;
 import com.java.test.junior.model.Product;
 import com.java.test.junior.model.ProductDTO;
 import com.java.test.junior.service.ProductService;
+import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
+import org.junit.jupiter.api.Tag;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
@@ -15,7 +17,7 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
-import javax.validation.Valid;
+
 import java.util.Optional;
 
 /**
@@ -23,8 +25,9 @@ import java.util.Optional;
  * @version java-test-junior
  * @apiNote 08.12.2022
  */
-@RequestMapping
-@RestController("/products")
+@RequestMapping("/products")
+@RestController
+@Tag("Product methods")
 @RequiredArgsConstructor
 public class ProductController {
     private final ProductService productService;

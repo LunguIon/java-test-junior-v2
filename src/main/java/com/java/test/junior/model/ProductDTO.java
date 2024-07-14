@@ -4,8 +4,12 @@
 
 package com.java.test.junior.model;
 
+
 import lombok.Getter;
 import lombok.Setter;
+import javax.validation.constraints.NotBlank;
+import javax.validation.constraints.NotNull;
+import javax.validation.constraints.Positive;
 
 /**
  * @author dumitru.beselea
@@ -15,7 +19,11 @@ import lombok.Setter;
 @Getter
 @Setter
 public class ProductDTO {
+    @NotBlank
     private String name;
+    @NotNull
+    @Positive
     private Double price;
+    @NotBlank
     private String description;
 }

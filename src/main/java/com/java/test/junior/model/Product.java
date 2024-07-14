@@ -9,7 +9,9 @@ import lombok.NoArgsConstructor;
 import lombok.Setter;
 import lombok.ToString;
 
+import javax.persistence.*;
 import java.time.LocalDateTime;
+import java.util.Set;
 
 /**
  * @author dumitru.beselea
@@ -20,12 +22,30 @@ import java.time.LocalDateTime;
 @Setter
 @ToString
 @NoArgsConstructor
+@Entity
+@Table(name = "products")
 public class Product {
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
+
     private String name;
+
     private Double price;
+
     private String description;
-    private Long userId;
+
+    @ManyToOne
+    @JoinColumn(name = "user_id", nullable = false)
+    private User user;
+
     private LocalDateTime createdAt;
+
     private LocalDateTime updatedAt;
+
+    @OneToMany(mappedBy = "product")
+    private Set<Like> likes;
+
+    @OneToMany(mappedBy = "product")
+    private Set<Dislike> dislikes;
 }

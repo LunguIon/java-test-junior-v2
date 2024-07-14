@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="DiffGenerationConfig">
+    <option name="sourceModelValue" value="Default" />
+    <option name="targetDbValue" value="cc636953-e221-4d43-b678-d6ce98cc6b0a__marketplace_public" />
+    <option name="updateChangeLogPath" value="src/main/resources/db/changelog/db.changelog-master.yaml" />
+    <option name="updateDbConnectionName" value="cc636953-e221-4d43-b678-d6ce98cc6b0a" />
+  </component>
+</project>

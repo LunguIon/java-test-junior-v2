@@ -10,6 +10,7 @@ import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 
 import javax.swing.text.html.Option;
+import java.util.List;
 import java.util.Optional;
 
 /**
@@ -27,5 +28,5 @@ public interface ProductService {
     Optional<Product> editProduct(Long id, ProductDTO productDTO);
     boolean deleteProduct(Long id);
     Page<Product> getAllProducts(Pageable pageable);
-
+    List<Product> searchProductsByName(String name);
 }

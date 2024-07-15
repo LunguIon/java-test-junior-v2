@@ -18,6 +18,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 
+import java.util.List;
 import java.util.Optional;
 
 /**
@@ -64,6 +65,11 @@ public class ProductController {
     public ResponseEntity<Page<Product>> getAllProducts(@RequestParam int page, @RequestParam int page_size) {
         Pageable pageable = PageRequest.of(page - 1, page_size);
         Page<Product> products = productService.getAllProducts(pageable);
+        return ResponseEntity.ok(products);
+    }
+    @GetMapping("/search")
+    public ResponseEntity<List<Product>> searchProductsByName(@RequestParam String name) {
+        List<Product> products = productService.searchProductsByName(name);
         return ResponseEntity.ok(products);
     }
 }

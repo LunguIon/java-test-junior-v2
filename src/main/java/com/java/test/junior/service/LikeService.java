@@ -18,10 +18,10 @@ public class LikeService {
     private final UserRepository userRepository;
     private final ProductRepository productRepository;
     private final DislikeRepository dislikeRepository;
+    private final CurrentUserService currentUserService;
     public boolean likeProduct(Long productId) {
-        String currentUsername = getCurrentUsername();
-        User user = userRepository.findByUsername(currentUsername);
-        Product product = productRepository.findById(productId).get();
+        User user = userRepository.findByUsername(currentUserService.getCurrentUsername());
+        Product product = productRepository.findById(productId).orElse(null);
 
         if (likeRepository.existsByUserAndProduct(user, product)) {
             return false;
@@ -29,13 +29,13 @@ public class LikeService {
         Like like = new Like();
         like.setUser(user);
         like.setProduct(product);
+        likeRepository.save(like);
         dislikeRepository.deleteByUserAndProduct(user, product);
         return true;
     }
 
     public boolean dislikeProduct(Long productId) {
-        String currentUsername = getCurrentUsername();
-        User user = userRepository.findByUsername(currentUsername);
+        User user = userRepository.findByUsername(currentUserService.getCurrentUsername());
         Product product = productRepository.findById(productId).orElse(null);
 
         if (product == null || dislikeRepository.existsByUserAndProduct(user, product)) {
@@ -52,10 +52,4 @@ public class LikeService {
         return true;
     }
 
-
-
-    private String getCurrentUsername() {
-        // This method should return the currently authenticated user's username
-        return "ehehehe";
-    }
 }

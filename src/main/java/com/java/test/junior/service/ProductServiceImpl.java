@@ -29,8 +29,9 @@ public class ProductServiceImpl implements ProductService {
      * @param productDTO this product to be created
      * @return the product created from the database
      */
-    private UserRepository userRepository;
-    private ProductRepository productRepository;
+    private final UserRepository userRepository;
+    private final ProductRepository productRepository;
+    private final CurrentUserService currentUserService;
 
     @Override
     public Product createProduct(ProductDTO productDTO) {
@@ -40,7 +41,7 @@ public class ProductServiceImpl implements ProductService {
         product.setDescription(productDTO.getDescription());
         product.setCreatedAt(LocalDateTime.now());
         product.setUpdatedAt(LocalDateTime.now());
-        product.setUser(userRepository.findByUsername(getCurrentUsername()));
+        product.setUser(userRepository.findByUsername(currentUserService.getCurrentUsername()));
         return productRepository.save(product);
     }
 
@@ -77,8 +78,4 @@ public class ProductServiceImpl implements ProductService {
         return productRepository.findAll(pageable);
     }
 
-    @Override
-    public String getCurrentUsername() {
-        return "";
-    }
 }

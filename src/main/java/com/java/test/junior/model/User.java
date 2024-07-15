@@ -1,6 +1,7 @@
 package com.java.test.junior.model;
 
 
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 import jakarta.persistence.*;
 import lombok.*;
 
@@ -19,6 +20,7 @@ public class User {
     private String username;
     private String password;
     @OneToMany(mappedBy = "user")
+    @JsonManagedReference
     private Set<Product> products;
     @OneToMany(mappedBy = "user")
     private Set<Like> likes;

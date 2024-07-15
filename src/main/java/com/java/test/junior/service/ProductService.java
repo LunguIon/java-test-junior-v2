@@ -27,6 +27,5 @@ public interface ProductService {
     Optional<Product> editProduct(Long id, ProductDTO productDTO);
     boolean deleteProduct(Long id);
     Page<Product> getAllProducts(Pageable pageable);
-    String getCurrentUsername();
 
 }

@@ -4,11 +4,9 @@
 
 package com.java.test.junior.model;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
 import jakarta.persistence.*;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
-import lombok.Setter;
-import lombok.ToString;
+import lombok.*;
 
 import java.time.LocalDateTime;
 import java.util.Set;
@@ -20,8 +18,8 @@ import java.util.Set;
  */
 @Getter
 @Setter
-@ToString
-@NoArgsConstructor
+@ToString(exclude = {"user", "likes", "dislikes"})
+@RequiredArgsConstructor
 @Entity
 @Table(name = "products")
 public class Product {
@@ -37,6 +35,7 @@ public class Product {
 
     @ManyToOne
     @JoinColumn(name = "user_id", nullable = false)
+    @JsonBackReference
     private User user;
 
     private LocalDateTime createdAt;
@@ -44,8 +43,10 @@ public class Product {
     private LocalDateTime updatedAt;
 
     @OneToMany(mappedBy = "product")
+    @JsonBackReference
     private Set<Like> likes;
 
     @OneToMany(mappedBy = "product")
+    @JsonBackReference
     private Set<Dislike> dislikes;
 }

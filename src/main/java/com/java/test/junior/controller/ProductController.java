@@ -7,9 +7,9 @@ package com.java.test.junior.controller;
 import com.java.test.junior.model.Product;
 import com.java.test.junior.model.ProductDTO;
 import com.java.test.junior.service.ProductService;
+import io.swagger.v3.oas.annotations.tags.Tag;
 import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
-import org.junit.jupiter.api.Tag;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
@@ -28,7 +28,7 @@ import java.util.Optional;
  */
 @RequestMapping("/products")
 @RestController
-@Tag("Product methods")
+@Tag(name = "Product methods")
 @RequiredArgsConstructor
 public class ProductController {
     private final ProductService productService;

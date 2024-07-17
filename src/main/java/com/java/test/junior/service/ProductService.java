@@ -6,6 +6,12 @@ package com.java.test.junior.service;
 
 import com.java.test.junior.model.Product;
 import com.java.test.junior.model.ProductDTO;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
+
+import javax.swing.text.html.Option;
+import java.util.List;
+import java.util.Optional;
 
 /**
  * @author dumitru.beselea
@@ -18,4 +24,10 @@ public interface ProductService {
      * @return the product created from the database
      */
     Product createProduct(ProductDTO productDTO);
+    Optional<Product> getProduct(Long id);
+    Optional<Product> editProduct(Long id, ProductDTO productDTO);
+    boolean deleteProduct(Long id);
+    Page<Product> getAllProducts(Pageable pageable);
+    List<Product> searchProductsByName(String name);
+    boolean loadProducts(String fileAddress);
 }

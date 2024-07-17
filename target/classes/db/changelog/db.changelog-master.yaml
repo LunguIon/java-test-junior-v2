@@ -3,5 +3,8 @@ databaseChangeLog:
       id: 1
       author: java-test-junior
   - include:
-      file: migration/V1__migrate_table_product.sql
+      file: migration/V1__init.sql
+      relativeToChangelogFile: true
+  - include:
+      file: migration/V2__small_changes.sql
       relativeToChangelogFile: true

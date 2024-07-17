@@ -1,9 +1,10 @@
 package com.java.test.junior.model;
 
 
+import com.fasterxml.jackson.annotation.JsonManagedReference;
+import jakarta.persistence.*;
 import lombok.*;
 
-import javax.persistence.*;
 import java.util.Set;
 
 @Getter
@@ -16,9 +17,10 @@ public class User {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
-    private String name;
+    private String username;
     private String password;
     @OneToMany(mappedBy = "user")
+    @JsonManagedReference
     private Set<Product> products;
     @OneToMany(mappedBy = "user")
     private Set<Like> likes;

@@ -72,4 +72,13 @@ public class ProductController {
         List<Product> products = productService.searchProductsByName(name);
         return ResponseEntity.ok(products);
     }
+    @PostMapping("loading/products")
+    public ResponseEntity<String> loadProducts(@RequestParam String fileAddress) {
+        boolean success = productService.loadProducts(fileAddress);
+        if (success) {
+            return ResponseEntity.ok("Products loaded successfully");
+        } else {
+            return ResponseEntity.status(500).body("Failed to load products");
+        }
+    }
 }

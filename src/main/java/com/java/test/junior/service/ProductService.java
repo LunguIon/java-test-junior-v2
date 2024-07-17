@@ -29,4 +29,5 @@ public interface ProductService {
     boolean deleteProduct(Long id);
     Page<Product> getAllProducts(Pageable pageable);
     List<Product> searchProductsByName(String name);
+    boolean loadProducts(String fileAddress);
 }
